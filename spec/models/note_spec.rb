@@ -51,7 +51,7 @@ RSpec.describe Note, type: :model do
   #     )
       
   #     @note2 = @project.notes.create(
-  #       message: "Thisis the second note.",
+  #       message: "This is the second note.",
   #       user: @user
   #     )
       

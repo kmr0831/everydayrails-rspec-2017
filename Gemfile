@@ -14,9 +14,12 @@ gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 
+group :test do
+  gem 'capybara', '~> 2.15.2'
+end
+
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'capybara', '~> 2.13.0'
   gem 'selenium-webdriver'
   gem 'rspec-rails', '~> 3.6.0'
   gem 'factory_bot_rails', '~> 4.10.0'
