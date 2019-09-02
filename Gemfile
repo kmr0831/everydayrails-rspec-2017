@@ -15,7 +15,9 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 
 group :test do
-  gem 'capybara', '~> 2.15.2'
+  gem 'capybara'
+  gem 'webdrivers'
+  gem 'launchy', '~> 2.4.3'
 end
 
 group :development, :test do

@@ -4,100 +4,100 @@ RSpec.describe ProjectsController, type: :controller do
   
   # 演習
   
-  describe "#new" do
+  # describe "#new" do
     
-    context "as an authenticated user" do
+  #   context "as an authenticated user" do
       
-      before do
-        @user = FactoryBot.create(:user)
-      end
+  #     before do
+  #       @user = FactoryBot.create(:user)
+  #     end
       
-      it "responds successfully" do
-        sign_in @user
+  #     it "responds successfully" do
+  #       sign_in @user
         
-        get :new
+  #       get :new
         
-        expect(response).to be_success
-      end
+  #       expect(response).to be_success
+  #     end
       
-    end
+  #   end
     
-    context "as a guest" do
+  #   context "as a guest" do
       
-      it "returns 302 response" do
-        get :new
+  #     it "returns 302 response" do
+  #       get :new
         
-        expect(response).to have_http_status "302"
-      end
+  #       expect(response).to have_http_status "302"
+  #     end
       
-      it "redirects to the sign-in page" do
-        get :new
+  #     it "redirects to the sign-in page" do
+  #       get :new
         
-        expect(response).to redirect_to "/users/sign_in"
-      end
+  #       expect(response).to redirect_to "/users/sign_in"
+  #     end
       
-    end
+  #   end
     
-  end
+  # end
   
-  describe "#edit" do
+  # describe "#edit" do
     
-    context "as an authenticated user" do
+  #   context "as an authenticated user" do
       
-      before do
-        @user = FactoryBot.create(:user)
-        @project = FactoryBot.create(:project, owner: @user)
-      end
+  #     before do
+  #       @user = FactoryBot.create(:user)
+  #       @project = FactoryBot.create(:project, owner: @user)
+  #     end
       
-      it "responds successfully" do
-        sign_in @user
+  #     it "responds successfully" do
+  #       sign_in @user
         
-        get :edit, params: { id: @project.id }
+  #       get :edit, params: { id: @project.id }
         
-        expect(response).to be_success
-      end
+  #       expect(response).to be_success
+  #     end
       
-    end
+  #   end
     
-    context "as an unauthorized user" do
+  #   context "as an unauthorized user" do
       
-      before do
-        @user = FactoryBot.create(:user)
-        other_user = FactoryBot.create(:user)
-        @project = FactoryBot.create(:project, owner: other_user)
-      end
+  #     before do
+  #       @user = FactoryBot.create(:user)
+  #       other_user = FactoryBot.create(:user)
+  #       @project = FactoryBot.create(:project, owner: other_user)
+  #     end
       
-      it "redirects to the dashboad" do
-        sign_in @user
+  #     it "redirects to the dashboad" do
+  #       sign_in @user
         
-        get :edit, params: { id: @project.id }
+  #       get :edit, params: { id: @project.id }
         
-        expect(response).to redirect_to root_path
-      end
+  #       expect(response).to redirect_to root_path
+  #     end
       
-    end
+  #   end
     
-    context "as a guest" do
+  #   context "as a guest" do
       
-      before do
-        @project = FactoryBot.create(:project)
-      end
+  #     before do
+  #       @project = FactoryBot.create(:project)
+  #     end
       
-      it "responds 302 response" do
-        get :edit, params: { id: @project.id }
+  #     it "responds 302 response" do
+  #       get :edit, params: { id: @project.id }
         
-        expect(response).to have_http_status "302"
-      end
+  #       expect(response).to have_http_status "302"
+  #     end
       
-      it "redirects to the sign-in page" do
-        get :edit, params: { id: @project.id }
+  #     it "redirects to the sign-in page" do
+  #       get :edit, params: { id: @project.id }
         
-        expect(response).to redirect_to "/users/sign_in"
-      end
+  #       expect(response).to redirect_to "/users/sign_in"
+  #     end
       
-    end
+  #   end
     
-  end
+  # end
   
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   
