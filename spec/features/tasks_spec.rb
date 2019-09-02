@@ -30,7 +30,7 @@ RSpec.feature "Tasks", type: :feature do
   
   # scenario "guest adds a project" do
   #   visit projects_path
-  #   save_and_open_page
+    
   #   click_link "New Project"
   # end
   
