@@ -2,6 +2,22 @@ require 'rails_helper'
 
 RSpec.describe ProjectsController, type: :controller do
   
+  # 8章 aggregate_failures (失敗の集約)
+  
+  let(:user) { FactoryBot.create(:user) } 
+  
+  it "responds successfully" do
+    sign_in user
+    get :index
+    
+    aggregate_failures do
+      expect(response).to be_success
+      expect(response).to have_http_status "200"
+    end
+  end
+  
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  
   # 演習
   
   # describe "#new" do
