@@ -2,6 +2,12 @@ require 'rails_helper'
 
 RSpec.describe Project, type: :model do
   
+  # 9章 shoulda-matchers
+  
+  it { is_expected.to validate_uniqueness_of(:name).scoped_to(:user_id)}
+  
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  
   # コールバック
   
   # it "can have many notes" do

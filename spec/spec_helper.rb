@@ -14,6 +14,15 @@
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
+  
+  # focusが付いたタグがあれば、利用する
+  # focusが付いたタグがなければ、テストスイート全体を実行
+  # config.filter_run focus: true
+  # config.run_all_when_everything_filtered = true
+  
+  # slowタグが付いたテストはスキップする。実行しない
+  # config.filter_run_excluding slow: true
+  
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
