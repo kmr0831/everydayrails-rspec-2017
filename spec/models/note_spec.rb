@@ -2,16 +2,22 @@ require 'rails_helper'
 
 RSpec.describe Note, type: :model do
   
+   let(:user) { FactoryBot.create(:user) }
+   let(:project) { FactoryBot.create(:project, owner: user) }
+   it { is_expected.to have_attached_file(:attachment) }
+  
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  
   # 9章 モック(double)とスタブ(allow)
   # データベースにアクセスしないので処理が速くなる
   # テストデータの代役になる
   
-  it "delegatea name to the user who created it" do
-    user = FactoryBot.create(:user, first_name: "Fake", last_name: "User")
-    note = Note.new(user: user)
+  # it "delegatea name to the user who created it" do
+  #   user = FactoryBot.create(:user, first_name: "Fake", last_name: "User")
+  #   note = Note.new(user: user)
     
-    expect(note.user_name).to eq "Fake User"
-  end
+  #   expect(note.user_name).to eq "Fake User"
+  # end
   
   # このテストは失敗する
   # it "delegatea name to the user who created it" do
@@ -24,13 +30,13 @@ RSpec.describe Note, type: :model do
   # end
   
   # 検証機能付きテストダブル
-  it "delegatea name to the user who created it" do
-   user = instance_double("User", name: "Fake User")
-   note = Note.new
-   allow(note).to receive(:user).and_return(user)
+  # it "delegatea name to the user who created it" do
+  # user = instance_double("User", name: "Fake User")
+  # note = Note.new
+  # allow(note).to receive(:user).and_return(user)
    
-   expect(note.user_name).to eq "Fake User"
-  end
+  # expect(note.user_name).to eq "Fake User"
+  # end
   
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   

@@ -2,6 +2,17 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   
+  # 10章 ウェルカムメールのモデルによるテスト
+  
+  it "sends a welcome email on account creation" do
+    allow(UserMailer).to receive_message_chain(:welcome_email, :deliver_later)
+    user = FactoryBot.create(:user)
+    
+    expect(UserMailer).to have_received(:welcome_email).with(user)
+  end
+  
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  
   # 9章 shoulda-matchers
   
   it { is_expected.to validate_presence_of :first_name }

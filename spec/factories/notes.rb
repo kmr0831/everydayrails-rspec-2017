@@ -3,5 +3,9 @@ FactoryBot.define do
     message "My impotant note"
     association :project
     user { project.owner }
+    
+    trait :with_attachment do
+      attachment { File.new("#{Rails.root}/spec/files/attachment.jpg") }
+    end
   end
 end

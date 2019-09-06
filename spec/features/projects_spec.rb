@@ -7,20 +7,20 @@ RSpec.feature "Projects", type: :feature do
   
   # 演習
   
-  let(:user) { FactoryBot.create(:user) }
-  let(:project) { FactoryBot.create(:project, owner: user) }
+  # let(:user) { FactoryBot.create(:user) }
+  # let(:project) { FactoryBot.create(:project, owner: user) }
   
-  scenario "user update a project" do
+  # scenario "user update a project" do
     
-    sign_in user
-    visit project_path(project)
+  #   sign_in user
+  #   visit project_path(project)
     
-    click_link "Edit"
-    fill_in "Name", with: "Test Project"
-    fill_in "Description", with: "Edit description"
-    click_button "Update Project"
-    expect(project.reload.description).to eq "Edit description"
-  end
+  #   click_link "Edit"
+  #   fill_in "Name", with: "Test Project"
+  #   fill_in "Description", with: "Edit description"
+  #   click_button "Update Project"
+  #   expect(project.reload.description).to eq "Edit description"
+  # end
   
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   
