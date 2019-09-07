@@ -2,26 +2,34 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   
+  # 10章 Webサービスをテストする
+  
+  it "performs geocoding", vcr: true do
+    user = FactoryBot.create(:user, last_sign_in_ip: "161.185.207.20")
+    
+    expect { user.geocode }.to change(user, :location).from(nil).to("Brooklyn, New York, US")
+  end
+  
   # 10章 ウェルカムメールのモデルによるテスト
   
-  it "sends a welcome email on account creation" do
-    allow(UserMailer).to receive_message_chain(:welcome_email, :deliver_later)
-    user = FactoryBot.create(:user)
+  # it "sends a welcome email on account creation" do
+  #   allow(UserMailer).to receive_message_chain(:welcome_email, :deliver_later)
+  #   user = FactoryBot.create(:user)
     
-    expect(UserMailer).to have_received(:welcome_email).with(user)
-  end
+  #   expect(UserMailer).to have_received(:welcome_email).with(user)
+  # end
   
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   
   # 9章 shoulda-matchers
   
-  it { is_expected.to validate_presence_of :first_name }
+  # it { is_expected.to validate_presence_of :first_name }
   
-  it { is_expected.to validate_presence_of :last_name }
+  # it { is_expected.to validate_presence_of :last_name }
   
-  it { is_expected.to validate_presence_of :email }
+  # it { is_expected.to validate_presence_of :email }
   
-  it { is_expected.to validate_uniqueness_of(:email).case_insensitive }
+  # it { is_expected.to validate_uniqueness_of(:email).case_insensitive }
   
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   
