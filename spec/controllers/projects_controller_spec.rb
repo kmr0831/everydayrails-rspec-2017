@@ -2,19 +2,59 @@ require 'rails_helper'
 
 RSpec.describe ProjectsController, type: :controller do
   
+  # 11章 外から中へ進む
+  
+  describe "#complete" do
+    
+    context "as an authenticated user" do
+      let!(:project) { FactoryBot.create(:project, completed: nil) }
+      
+      before do
+        sign_in project.owner
+      end
+      
+      describe "an unsuccessful completion" do
+        before do
+          allow_any_instance_of(Project).to receive(:update_attributes).with(completed: true).and_return(false)
+        end
+        
+        it "redirects to the project page" do
+          patch :complete, params: { id: project.id }
+          
+          expect(response).to redirect_to project_path(project)
+        end
+        
+        it "sets the flash" do
+          patch :complete, params: { id: project.id }
+          
+          expect(flash[:alert]).to eq "Unable to complete project."
+        end
+        
+        it "doesn't mark the project as completed" do
+          expect { patch :complete, params: { id: project.id } }.to_not change(project, :completed)
+        end
+        
+      end
+      
+    end
+    
+  end
+  
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  
   # 8章 aggregate_failures (失敗の集約)
   
-  let(:user) { FactoryBot.create(:user) } 
+  # let(:user) { FactoryBot.create(:user) } 
   
-  it "responds successfully" do
-    sign_in user
-    get :index
+  # it "responds successfully" do
+  #   sign_in user
+  #   get :index
     
-    aggregate_failures do
-      expect(response).to be_success
-      expect(response).to have_http_status "200"
-    end
-  end
+  #   aggregate_failures do
+  #     expect(response).to be_success
+  #     expect(response).to have_http_status "200"
+  #   end
+  # end
   
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   
